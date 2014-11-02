@@ -36,6 +36,10 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  field :character_name, default: ""
+  field :character_name,    type: String
+  field :first_name,        type: String
+  field :last_name,         type: String
+  validates_presence_of :first_name, :last_name
+
 
 end
