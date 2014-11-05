@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# setting up the roles
+[:admin, :character, :player].each do |role|
+  Role.find_or_create_by(name: role)
+end
+
+# Creating initial Admin
+u = User.create!(
+  first_name:     "Ad",
+  last_name:      "Min",
+  character_name: "Admin",
+  email:          "b.dubaut@gmail.com",
+  password:       "FadRemu8",
+  roles:          [Role.where(name: "admin").first]
+)
