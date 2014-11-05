@@ -43,7 +43,14 @@ class User
   field :character_name,    type: String
   field :first_name,        type: String
   field :last_name,         type: String
-  validates_presence_of :first_name, :last_name
 
+  validates_presence_of :first_name, :last_name
+  after_create :add_default_role
+
+  private
+
+  def add_default_role
+    self.add_role :player if self.roles.blank?
+  end
 
 end

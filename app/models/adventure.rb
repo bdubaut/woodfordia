@@ -2,6 +2,8 @@ class Adventure
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  has_many :scene
+
   field :name,      type: String
   field :tagline,   type: String
   field :synopsis,  type: String
