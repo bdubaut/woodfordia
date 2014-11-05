@@ -1,3 +1,4 @@
+require "concerns/zero_id_fix.rb"
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -6,6 +7,9 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # supposed to be temporary
+  include ZeroOidFix
 
   ## Database authenticatable
   field :email,              type: String, default: ""
