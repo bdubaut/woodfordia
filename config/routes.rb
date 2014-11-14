@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'dashboard#index'
 
-
+  get 'adventures', to: 'adventures#index'
   resource :adventure do
     resource :scene
   end

@@ -38,16 +38,23 @@ RSpec.describe AdventuresController, :type => :controller do
   end
 
   describe '#update' do
+    before(:each) do
+      Adventure.delete_all
+      @a = FactoryGirl.create :adventure
+    end
     it 'updates the adventure' do
-
+      expect(@a.name).to eq "The Legend of Zelda"
+      put :update, id: @a.id, adventure: {name: "my new adventure"}
+      @a.reload
+      expect(@a.name).to eq "my new adventure"
     end
-
+    it 'redirects to Adventures#index if the adventure is not found' do
+      put :update, id: 'toto', adventure: {name: "my new adventure"}
+      expect(response).to redirect_to adventures_path
+    end
     it 'redirects to the show action on success' do
-
-    end
-
-    it 'redirects to the edit action on failure' do
-
+      put :update, id: @a.id, adventure: {name: "my new adventure", tagline: "a new hope", synopsis: 'toto'}
+      expect(response).to redirect_to adventure_path(:id => @a.id)
     end
   end
 
