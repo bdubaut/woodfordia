@@ -34,6 +34,7 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.where(id: params[:id]).first
+    @scenes = @adventure.scenes
   end
 
   def destroy

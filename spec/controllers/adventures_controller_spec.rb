@@ -33,6 +33,8 @@ RSpec.describe AdventuresController, :type => :controller do
       a = FactoryGirl.create :adventure
       get :show, :id => a.id
       expect(response.status).to eq 200
+      expect(assigns(:adventure)).to eq a
+      expect(assigns(:scenes)).to eq []
       expect(response).to render_template(:show)
     end
   end
