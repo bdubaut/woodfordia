@@ -28,5 +28,27 @@ RSpec.describe AdventuresController, :type => :controller do
       expect(response).to redirect_to new_adventure_path
     end
   end
+  describe '#show' do
+    it 'returns the adventure' do
+      a = FactoryGirl.create :adventure
+      get :show, :id => a.id
+      expect(response.status).to eq 200
+      expect(response).to render_template(:show)
+    end
+  end
+
+  describe '#update' do
+    it 'updates the adventure' do
+
+    end
+
+    it 'redirects to the show action on success' do
+
+    end
+
+    it 'redirects to the edit action on failure' do
+
+    end
+  end
 
 end

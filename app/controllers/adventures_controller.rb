@@ -9,5 +9,19 @@ class AdventuresController < ApplicationController
   def new
   end
 
-  
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def show
+    @adventure = Adventure.where(id: params[:id]).first
+  end
+
+  def destroy
+
+  end
 end
