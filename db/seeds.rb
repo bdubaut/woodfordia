@@ -18,5 +18,4 @@ u = User.create!(
   character_name: "Admin",
   email:          "b.dubaut@gmail.com",
   password:       "FadRemu8",
-  roles:          [Role.where(name: "admin").first]
 )
