@@ -35,7 +35,11 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-
+    if Adventure.where(id: params[:id]).delete
+      redirect_to adventures_path
+    else
+      redirect_to adventures_path, notice: 'An error occured'
+    end
   end
 
   private

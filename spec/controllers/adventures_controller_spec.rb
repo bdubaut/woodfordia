@@ -58,4 +58,24 @@ RSpec.describe AdventuresController, :type => :controller do
     end
   end
 
+  describe '#destroy' do
+    before(:each) do
+      Adventure.delete_all
+      @a = FactoryGirl.create :adventure
+    end
+    it 'destroys the whole adventure.' do
+      expect(Adventure.count).to eq 1
+      delete :destroy, id: @a.id
+      expect(Adventure.count).to eq 0
+    end
+    it 'redirects to index on success' do
+      delete :destroy, id: 'toto'
+      expect(response).to redirect_to adventures_path
+    end
+    it 'redirects to index on failure' do
+      delete :destroy, id: 'toto'
+      expect(response).to redirect_to adventures_path
+    end
+  end
+
 end
