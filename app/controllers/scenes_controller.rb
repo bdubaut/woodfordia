@@ -3,6 +3,7 @@ class ScenesController < ApplicationController
 
   def new
     @adventure = Adventure.where(id: params[:adventure_id]).first
+    render 'new'
   end
 
   def create
@@ -21,7 +22,10 @@ class ScenesController < ApplicationController
   end
 
   def edit
-
+    @adventure = Adventure.where(id: params[:adventure_id]).first
+    redirect_to(root_path) and return if @adventure.nil?
+    @scene = Scene.where(adventure_id: @adventure.id, id: params[:id]).first
+    redirect_to(adventure_path(@adventure.id)) and return if @scene.nil?
   end
 
   def update
