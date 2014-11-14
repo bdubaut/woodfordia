@@ -61,7 +61,7 @@ RSpec.describe AdventuresController, :type => :controller do
   describe '#destroy' do
     before(:each) do
       Adventure.delete_all
-      @a = FactoryGirl.create :adventure
+      @a = FactoryGirl.create(:adventure)
     end
     it 'destroys the whole adventure.' do
       expect(Adventure.count).to eq 1
@@ -78,4 +78,31 @@ RSpec.describe AdventuresController, :type => :controller do
     end
   end
 
+  describe '#index' do
+    before(:each) do
+      Adventure.delete_all
+      5.times { FactoryGirl.create(:adventure)}
+    end
+    it 'returns the list of adventures' do
+      expect(Adventure.count).to eq 5
+      get :index
+      expect(assigns(:list).count).to eq 5
+      expect(response).to render_template(partial: '_index')
+    end
+  end
+
+  describe '#edit' do
+    before(:each) do
+      Adventure.delete_all
+      @a = FactoryGirl.create :adventure
+    end
+    it 'selects an adventure to edit' do
+      get :edit, id: @a.id
+      expect(assigns(:adventure)).to eq @a
+    end
+    it 'renders the edit view' do
+      get :edit, id: @a.id
+      expect(response).to render_template('edit')
+    end
+  end
 end

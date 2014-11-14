@@ -2,7 +2,8 @@ class AdventuresController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @list = Adventure.all.entries
+    render partial: 'index'
   end
 
   def create
@@ -14,7 +15,8 @@ class AdventuresController < ApplicationController
   end
 
   def edit
-
+    @adventure = Adventure.where(:id => params[:id]).first
+    render 'edit'
   end
 
   def update
