@@ -10,13 +10,10 @@ RSpec.describe AdventuresController, :type => :controller do
   before(:each) do
     Adventure.delete_all
     User.delete_all
+    allow(controller).to receive(:authenticate_user!).and_return(true)
   end
   describe '#create' do
     it 'creates a new Adventure' do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      admin = FactoryGirl.create(:admin)
-      admin.add_role(:admin)
-      sign_in admin
       expect(Adventure.count).to eq 0
       post :create, name: "My new adventure"
       expect(response).to redirect_to root_path
@@ -25,9 +22,6 @@ RSpec.describe AdventuresController, :type => :controller do
       expect(Adventure.first.name).to eq "My new adventure"
     end
     it 'redirects to the new action if the adventure is not valid' do
-      admin = FactoryGirl.create(:admin)
-      admin.add_role(:admin)
-      sign_in admin
       expect(Adventure.count).to eq 0
       post :create, tagline: "an adventure without a name"
       expect(Adventure.count).to eq 0

@@ -7,6 +7,7 @@ class AdventuresController < ApplicationController
   end
 
   def new
-
   end
+
+  
 end
