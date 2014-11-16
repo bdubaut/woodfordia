@@ -34,6 +34,7 @@ gem 'rolify'
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'factory_girl_rails'
+	gem 'simplecov'
 end
 
 # Heroku Setup
