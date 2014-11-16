@@ -65,4 +65,32 @@ RSpec.describe ScenesController, :type => :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+  describe '#update' do
+    it 'updates the given scene' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      put :update, adventure_id: @adventure.id, id: scene.id, scene: {title: "New title", description: "gologolo"}
+      scene.reload
+      expect(scene.title).to eq "New title"
+      expect(scene.description).to eq "gologolo"
+    end
+    it 'redirects to the edit action in case of failure' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      put :update, adventure_id: @adventure.id, id: scene.id, scene: {title: {}}
+    end
+    it 'redirects to the show action in case of success' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      put :update, adventure_id: @adventure.id, id: scene.id, scene: {title: "New title", description: "gologolo"}
+      expect(response).to redirect_to adventure_scene_path(@adventure.id, scene.id)
+    end
+    it 'redirects to root_path if the scene is not found' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      put :update, adventure_id: @adventure.id, id: 'toto', scene: {title: "New title"}
+      expect(response).to redirect_to root_path
+    end
+    it 'redirects to root_path if the adventure is not found' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      put :update, adventure_id: 'toto', id: 'toto', scene: {title: "New title"}
+      expect(response).to redirect_to root_path
+    end
+  end
 end
