@@ -12,6 +12,9 @@ RSpec.describe CheckInsController, :type => :controller do
     @adventure = FactoryGirl.create(:adventure)
     @scene = FactoryGirl.create(:scene, adventure: @adventure)
   end
+  after(:all) do
+    User.delete_all
+  end
   before(:each) do
     allow(controller).to receive(:authenticate_user!).and_return(true)
     CheckIn.delete_all
