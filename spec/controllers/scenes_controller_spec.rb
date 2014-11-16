@@ -93,4 +93,41 @@ RSpec.describe ScenesController, :type => :controller do
       expect(response).to redirect_to root_path
     end
   end
+  describe '#show' do
+    it 'shows the scene' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      get :show, adventure_id: @adventure.id, id: scene.id
+      expect(assigns(:scene)).to eq scene
+      expect(response).to render_template('show')
+    end
+    it 'redirects to the adventure if the scene is not found' do
+      get :show, adventure_id: @adventure.id, id: 'toto'
+      expect(response).to redirect_to adventure_path(@adventure.id)
+    end
+  end
+  describe '#destroy' do
+    it 'deletes the given scene from the adventure.' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      expect(@adventure.scenes.count).to eq 1
+      delete :destroy, adventure_id: @adventure.id, id: scene.id
+      @adventure.reload
+      expect(@adventure.scenes).to be_empty
+    end
+    it 'redirects to the adventure if the deletion fails' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      allow(scene).to receive(:delete).and_return(false)
+      delete :destroy, adventure_id: @adventure.id, id: scene.id
+      expect(response).to redirect_to adventure_path(@adventure.id)
+    end
+    it 'redirects to the adventure if the scene is not found' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      delete :destroy, adventure_id: @adventure.id, id: scene.id
+      expect(response).to redirect_to adventure_path(@adventure.id)
+    end
+    it 'redirects to root path if the adventure is not found' do
+      scene = FactoryGirl.create(:scene, adventure: @adventure)
+      delete :destroy, adventure_id: 'toto', id: scene.id
+      expect(response).to redirect_to root_path
+    end
+  end
 end

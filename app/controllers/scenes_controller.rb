@@ -22,7 +22,9 @@ class ScenesController < ApplicationController
   end
 
   def show
-
+    adventure = Adventure.where(id: params[:adventure_id]).first
+    @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:id]).first
+    redirect_to adventure_path(adventure.id) if @scene.nil?
   end
 
   def edit
@@ -42,7 +44,15 @@ class ScenesController < ApplicationController
 
 
   def destroy
-
+    redirect_to root_path and return if Adventure.where(id: params[:adventure_id]).first.nil?
+    scene = Scene.where(adventure_id: params[:adventure_id]).first
+    redirect_to adventure_path(params[:adventure_id]), notice: "Scene not found" and return if scene.nil?
+    if scene.delete
+      notice = "Scene deleted"
+    else
+      notice = "a problem occured."
+    end
+    redirect_to adventure_path(params[:adventure_id]), notice: notice
   end
 
   private
