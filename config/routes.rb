@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resource :adventure do
     resource :scene
   end
+
+  resource :check_in, only: [:new, :create, :destroy]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -2,6 +2,9 @@ require "concerns/zero_id_fix.rb"
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+
+  has_many :check_ins
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
