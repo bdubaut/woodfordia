@@ -8,7 +8,6 @@ RSpec.describe CheckInsController, :type => :controller do
       Role.find_or_create_by(name: role)
     end
     @user = FactoryGirl.create(:admin)
-    @user.remove_role :player
     @player = FactoryGirl.create(:player)
     @adventure = FactoryGirl.create(:adventure)
     @scene = FactoryGirl.create(:scene, adventure: @adventure)
