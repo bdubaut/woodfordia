@@ -11,8 +11,8 @@ class Scene
   field :question_2,      type: String
   field :question_3,      type: String
   field :location,        type: String
-  field :next_scenes,     type: Array
-  field :previous_scenes, type: Array
+  field :next_scenes,     type: Array, default: []
+  field :previous_scenes, type: Array, default: []
 
   validates_presence_of :title
 end
