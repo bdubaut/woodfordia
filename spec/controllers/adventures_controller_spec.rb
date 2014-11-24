@@ -25,7 +25,7 @@ RSpec.describe AdventuresController, :type => :controller do
       expect(Adventure.count).to eq 0
       post :create, tagline: "an adventure without a name"
       expect(Adventure.count).to eq 0
-      expect(response).to redirect_to new_adventure_path
+      expect(response).to redirect_to new_adventures_path
     end
   end
   describe '#show' do
@@ -56,7 +56,7 @@ RSpec.describe AdventuresController, :type => :controller do
     end
     it 'redirects to the show action on success' do
       put :update, id: @a.id, adventure: {name: "my new adventure", tagline: "a new hope", synopsis: 'toto'}
-      expect(response).to redirect_to adventure_path(:id => @a.id)
+      expect(response).to redirect_to adventures_path(:id => @a.id)
     end
   end
 
@@ -89,7 +89,7 @@ RSpec.describe AdventuresController, :type => :controller do
       expect(Adventure.count).to eq 5
       get :index
       expect(assigns(:list).count).to eq 5
-      expect(response).to render_template(partial: '_index')
+      expect(response).to render_template('index')
     end
   end
 

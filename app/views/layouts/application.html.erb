@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <h1>
+    WOODFORDIA
+  </h1>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <br>
+  
 <%= yield %>
 
 </body>

@@ -26,7 +26,7 @@ RSpec.describe ScenesController, :type => :controller do
       post :create, adventure_id: @adventure.id, scene: {title: 'Scene 01', description: 'blabla'}
       expect(@adventure.scenes.count).to eq 1
       expect(response.status).to eq 302
-      expect(response).to redirect_to adventure_path(@adventure.id)
+      expect(response).to redirect_to adventures_path(@adventure.id)
     end
     it 'redirects to the dashboard if the adventure is not found' do
       post :create, adventure_id: "toto", scene: {title: 'Scene 01', description: 'blabla'}
@@ -35,7 +35,7 @@ RSpec.describe ScenesController, :type => :controller do
     it 'redirects to the new action if the creation fails.' do
       expect(@adventure.scenes).to be_empty
       post :create, adventure_id: @adventure.id, scene: {description: 'blabla'}
-      expect(response).to redirect_to new_adventure_scene_path(adventure_id: @adventure_id)
+      expect(response).to redirect_to new_adventures_scene_path(adventure_id: @adventure_id)
     end
   end
   describe '#new' do
@@ -58,7 +58,7 @@ RSpec.describe ScenesController, :type => :controller do
     end
     it 'redirects to the adventure page if the scene is not found' do
       get :edit, adventure_id: @adventure.id, id: 'Momo'
-      expect(response).to redirect_to(adventure_path(@adventure.id))
+      expect(response).to redirect_to(adventures_path(@adventure.id))
     end
     it 'redirects to the dashboard if the adventure is not found' do
       get :edit, adventure_id: 'bobby', id: 'Momo'
@@ -80,7 +80,7 @@ RSpec.describe ScenesController, :type => :controller do
     it 'redirects to the show action in case of success' do
       scene = FactoryGirl.create(:scene, adventure: @adventure)
       put :update, adventure_id: @adventure.id, id: scene.id, scene: {title: "New title", description: "gologolo"}
-      expect(response).to redirect_to adventure_scene_path(@adventure.id, scene.id)
+      expect(response).to redirect_to adventures_scene_path(@adventure.id, scene.id)
     end
     it 'redirects to root_path if the scene is not found' do
       scene = FactoryGirl.create(:scene, adventure: @adventure)
@@ -102,7 +102,7 @@ RSpec.describe ScenesController, :type => :controller do
     end
     it 'redirects to the adventure if the scene is not found' do
       get :show, adventure_id: @adventure.id, id: 'toto'
-      expect(response).to redirect_to adventure_path(@adventure.id)
+      expect(response).to redirect_to adventures_path(@adventure.id)
     end
   end
   describe '#destroy' do
@@ -117,12 +117,12 @@ RSpec.describe ScenesController, :type => :controller do
       scene = FactoryGirl.create(:scene, adventure: @adventure)
       allow(scene).to receive(:delete).and_return(false)
       delete :destroy, adventure_id: @adventure.id, id: scene.id
-      expect(response).to redirect_to adventure_path(@adventure.id)
+      expect(response).to redirect_to adventures_path(@adventure.id)
     end
     it 'redirects to the adventure if the scene is not found' do
       scene = FactoryGirl.create(:scene, adventure: @adventure)
       delete :destroy, adventure_id: @adventure.id, id: scene.id
-      expect(response).to redirect_to adventure_path(@adventure.id)
+      expect(response).to redirect_to adventures_path(@adventure.id)
     end
     it 'redirects to root path if the adventure is not found' do
       scene = FactoryGirl.create(:scene, adventure: @adventure)

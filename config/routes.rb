@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'dashboard#index'
+  root 'adventures#index'
 
   get 'adventures', to: 'adventures#index'
-  resource :adventure do
+  resource :adventures do
     resource :scene
   end
 

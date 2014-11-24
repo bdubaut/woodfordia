@@ -1,0 +1,8 @@
+<h2>Adventures</h2>
+<ul>
+  <% @list.each do |a| %>
+    <li><%= link_to a.name %> - <em><%= a.tagline %></em></li>
+  <% end %>
+</ul>
+
+<%= link_to "Create Adventure", new_adventures_path %>

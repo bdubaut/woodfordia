@@ -1,0 +1,10 @@
+<h2><%= @adventure.name %><small><%= @adventure.tagline %> </small> </h2>
+<p>
+  <%= @adventure.description %>
+</p>
+
+<ul>
+  <% @scenes.each do |s| %>
+    <li><%= link_to s.name, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
+  <% end %>
+</ul>

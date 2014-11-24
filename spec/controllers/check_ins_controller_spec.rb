@@ -36,7 +36,7 @@ RSpec.describe CheckInsController, :type => :controller do
     end
     it 'redirects to the scene' do
       post :create, adventure_id: @adventure.id, check_in: {scene_id: @scene.id, user_id: @player.id}
-      expect(response).to redirect_to adventure_scene_path(adventure_id: @adventure.id, id: @scene.id)
+      expect(response).to redirect_to adventures_scene_path(adventure_id: @adventure.id, id: @scene.id)
     end
   end
   describe '#destroy' do
@@ -48,12 +48,12 @@ RSpec.describe CheckInsController, :type => :controller do
       expect(CheckIn.count).to eq 1
       delete :destroy, id: @c.id
       expect(CheckIn.count).to eq 0
-      expect(response).to redirect_to adventure_scene_path(adventure_id: @scene.adventure.id, id: @scene.id)
+      expect(response).to redirect_to adventures_scene_path(adventure_id: @scene.adventure.id, id: @scene.id)
     end
     it 'redirects to the scene in case of failure' do
       allow(@c).to receive(:delete).and_return(false)
       delete :destroy, id: @c.id
-      expect(response).to redirect_to adventure_scene_path(adventure_id: @scene.adventure.id, id: @scene.id)
+      expect(response).to redirect_to adventures_scene_path(adventure_id: @scene.adventure.id, id: @scene.id)
     end
   end
 end
