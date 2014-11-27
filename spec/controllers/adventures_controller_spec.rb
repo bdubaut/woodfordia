@@ -15,7 +15,7 @@ RSpec.describe AdventuresController, :type => :controller do
   describe '#create' do
     it 'creates a new Adventure' do
       expect(Adventure.count).to eq 0
-      post :create, name: "My new adventure"
+      post :create, adventure: {name: "My new adventure"}
       expect(response).to redirect_to root_path
       expect(response.status).to eq 302
       expect(Adventure.count).to eq 1
@@ -23,9 +23,9 @@ RSpec.describe AdventuresController, :type => :controller do
     end
     it 'redirects to the new action if the adventure is not valid' do
       expect(Adventure.count).to eq 0
-      post :create, tagline: "an adventure without a name"
+      post :create, adventure: {tagline: "an adventure without a name"}
       expect(Adventure.count).to eq 0
-      expect(response).to redirect_to new_adventures_path
+      expect(response).to redirect_to new_adventure_path
     end
   end
   describe '#show' do

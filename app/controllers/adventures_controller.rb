@@ -7,7 +7,7 @@ class AdventuresController < ApplicationController
 
   def create
     a = Adventure.new name: params[:adventure][:name], tagline: params[:adventure][:tagline], synopsis: params[:adventure][:synopsis]
-    a.save ? redirect_to(root_path) : redirect_to(new_adventures_path)
+    a.save ? redirect_to(root_path) : redirect_to(new_adventure_path)
   end
 
   def new

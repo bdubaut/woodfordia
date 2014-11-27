@@ -15,7 +15,7 @@ class ScenesController < ApplicationController
         @adventure.save
         redirect_to adventures_path(params[:adventure_id]) and return
       else
-        redirect_to new_adventures_scene_path, notice: "the scene could not be created" and return
+        redirect_to new_adventure_scene_path, notice: "the scene could not be created" and return
       end
     end
     redirect_to(root_path, notice: "This adventure does not exist.") and return
@@ -39,7 +39,11 @@ class ScenesController < ApplicationController
     redirect_to root_path and return if adventure.nil?
     scene = Scene.where(adventure_id: adventure.id, id: params[:id]).first
     redirect_to root_path and return if scene.nil?
-    redirect_to adventures_scene_path(adventure.id, scene.id) if scene.update_attributes(scene_params)
+    if scene.update_attributes(scene_params)
+      redirect_to(adventure_scene_path(adventure.id, scene.id))
+    # else
+    #   redirect_to(edit_adventure_scene_path(adventure.id, scene.id))
+    end
   end
 
 

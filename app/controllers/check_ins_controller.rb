@@ -9,15 +9,15 @@ class CheckInsController < ApplicationController
 
   def create
     @check_in = CheckIn.create(check_in_params)
-    redirect_to adventures_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id]) and return if @check_in.nil?
-    redirect_to adventures_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id])
+    redirect_to adventure_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id]) and return if @check_in.nil?
+    redirect_to adventure_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id])
   end
 
   def destroy
     c = CheckIn.where(id: params[:id]).first
     scene = c.scene
     c.delete ? notice = "Check in deleted successfully." : notice = "An error occured"
-    redirect_to adventures_scene_path(adventure_id: scene.adventure.id, id: scene.id), notice: notice
+    redirect_to adventure_scene_path(adventure_id: scene.adventure.id, id: scene.id), notice: notice
   end
 
   private
