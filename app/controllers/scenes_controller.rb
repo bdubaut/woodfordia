@@ -3,7 +3,7 @@ class ScenesController < ApplicationController
 
   def new
     @adventure = Adventure.where(id: params[:adventure_id]).first
-    render 'new'
+    @scene = Scene.new()
   end
 
   def create

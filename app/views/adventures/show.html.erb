@@ -1,6 +1,6 @@
-<h2><%= @adventure.name %><small><%= @adventure.tagline %> </small> </h2>
+<h2><%= @adventure.name %> </h2><small> <%= @adventure.tagline %> </small>
 <p>
-  <%= @adventure.description %>
+  <%= @adventure.synopsis %>
 </p>
 
 <ul>
@@ -8,3 +8,7 @@
     <li><%= link_to s.name, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
   <% end %>
 </ul>
+
+<%= link_to '+ Add Scene', new_adventure_scene_path(@adventure.id) %>
+
+<< <%= link_to "Back to Home", root_path %>
