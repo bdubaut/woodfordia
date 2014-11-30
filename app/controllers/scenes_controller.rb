@@ -63,6 +63,6 @@ class ScenesController < ApplicationController
   private
 
   def scene_params
-    params.require(:scene).permit(:title, :description)
+    params.require(:scene).permit(:title, :description, :question_1, :question_2, :question_3)
   end
 end
