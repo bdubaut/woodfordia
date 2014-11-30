@@ -3,6 +3,7 @@ class ScenesController < ApplicationController
 
   def new
     @adventure = Adventure.where(id: params[:adventure_id]).first
+    @list = Scene.where(:adventure => @adventure).entries
     @scene = Scene.new()
   end
 

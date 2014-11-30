@@ -5,7 +5,7 @@
 
 <ul>
   <% @scenes.each do |s| %>
-    <li><%= link_to s.name, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
+    <li><%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
   <% end %>
 </ul>
 
