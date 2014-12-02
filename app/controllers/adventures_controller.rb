@@ -3,6 +3,7 @@ class AdventuresController < ApplicationController
 
   def index
     @list = Adventure.all.entries
+    @users = User.all.entries
   end
 
   def create

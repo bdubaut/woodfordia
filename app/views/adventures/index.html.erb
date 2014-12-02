@@ -6,3 +6,12 @@
 </ul>
 
 <%= link_to "Create Adventure", new_adventure_path %>
+
+<h2>Users</h2>
+<ul>
+  <% @users.each do |u| %>
+    <li><%= "#{u.character_name} (#{u.first_name} #{u.last_name})" %> </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create User", new_user_registration_path %>
