@@ -1,0 +1,14 @@
+<h2><%= @adventure.name %> </h2><small> <%= @adventure.tagline %> </small>
+<p>
+  <%= @adventure.synopsis %>
+</p>
+
+<ul>
+  <% @scenes.each do |s| %>
+    <li><%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
+  <% end %>
+</ul>
+
+<%= link_to '+ Add Scene', new_adventure_scene_path(@adventure.id) %>
+
+<< <%= link_to "Back to Home", root_path %>

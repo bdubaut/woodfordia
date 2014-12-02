@@ -3,7 +3,8 @@ class ScenesController < ApplicationController
 
   def new
     @adventure = Adventure.where(id: params[:adventure_id]).first
-    render 'new'
+    @list = Scene.where(:adventure => @adventure).entries
+    @scene = Scene.new()
   end
 
   def create
@@ -13,7 +14,7 @@ class ScenesController < ApplicationController
       if s.save
         @adventure.scenes << s
         @adventure.save
-        redirect_to adventure_path(params[:adventure_id]) and return
+        redirect_to adventures_path(params[:adventure_id]) and return
       else
         redirect_to new_adventure_scene_path, notice: "the scene could not be created" and return
       end
@@ -23,15 +24,16 @@ class ScenesController < ApplicationController
 
   def show
     adventure = Adventure.where(id: params[:adventure_id]).first
+    @death = Scene.where(title: "Death", adventure: adventure).first
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:id]).first
-    redirect_to adventure_path(adventure.id) if @scene.nil?
+    redirect_to adventures_path(adventure.id) if @scene.nil?
   end
 
   def edit
     @adventure = Adventure.where(id: params[:adventure_id]).first
     redirect_to(root_path) and return if @adventure.nil?
     @scene = Scene.where(adventure_id: @adventure.id, id: params[:id]).first
-    redirect_to(adventure_path(@adventure.id)) and return if @scene.nil?
+    redirect_to(adventures_path(@adventure.id)) and return if @scene.nil?
   end
 
   def update
@@ -39,25 +41,29 @@ class ScenesController < ApplicationController
     redirect_to root_path and return if adventure.nil?
     scene = Scene.where(adventure_id: adventure.id, id: params[:id]).first
     redirect_to root_path and return if scene.nil?
-    redirect_to adventure_scene_path(adventure.id, scene.id) if scene.update_attributes(scene_params)
+    if scene.update_attributes(scene_params)
+      redirect_to(adventure_scene_path(adventure.id, scene.id))
+    # else
+    #   redirect_to(edit_adventure_scene_path(adventure.id, scene.id))
+    end
   end
 
 
   def destroy
     redirect_to root_path and return if Adventure.where(id: params[:adventure_id]).first.nil?
     scene = Scene.where(adventure_id: params[:adventure_id]).first
-    redirect_to adventure_path(params[:adventure_id]), notice: "Scene not found" and return if scene.nil?
+    redirect_to adventures_path(params[:adventure_id]), notice: "Scene not found" and return if scene.nil?
     if scene.delete
       notice = "Scene deleted"
     else
       notice = "a problem occured."
     end
-    redirect_to adventure_path(params[:adventure_id]), notice: notice
+    redirect_to adventures_path(params[:adventure_id]), notice: notice
   end
 
   private
 
   def scene_params
-    params.require(:scene).permit(:title, :description)
+    params.require(:scene).permit(:title, :description, :question_1, :question_2, :question_3)
   end
 end

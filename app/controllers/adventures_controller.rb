@@ -3,15 +3,16 @@ class AdventuresController < ApplicationController
 
   def index
     @list = Adventure.all.entries
-    render partial: 'index'
+    @users = User.all.entries
   end
 
   def create
-    a = Adventure.new name: params[:name], tagline: params[:tagline], synopsis: params[:synopsis]
+    a = Adventure.new name: params[:adventure][:name], tagline: params[:adventure][:tagline], synopsis: params[:adventure][:synopsis]
     a.save ? redirect_to(root_path) : redirect_to(new_adventure_path)
   end
 
   def new
+    @adventure = Adventure.new()
   end
 
   def edit
@@ -25,9 +26,9 @@ class AdventuresController < ApplicationController
       redirect_to adventures_path
     else
       if adventure.update_attributes(adventure_params)
-        redirect_to adventure_path(id: adventure.id)
+        redirect_to adventures_path(id: adventure.id)
       else
-        redirect_to edit_adventure_path(id: adventure.id)
+        redirect_to edit_adventures_path(id: adventure.id)
       end
     end
   end
@@ -50,4 +51,5 @@ class AdventuresController < ApplicationController
   def adventure_params
     params.require(:adventure).permit(:name, :tagline, :synopsis)
   end
+
 end

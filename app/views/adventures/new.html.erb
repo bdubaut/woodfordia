@@ -1,0 +1,14 @@
+<%= form_for @adventure do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :tagline %>:
+  <%= f.text_field :tagline %>
+  <br>
+  <%= f.label :synopsis %>:
+  <%= f.text_area :synopsis %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<< <%= link_to "Back to Home", root_path %>
