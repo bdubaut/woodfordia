@@ -8,6 +8,9 @@
 <h4>Outcomes:</h4>
 <ul>
   <% @scene.next_scenes.each do |s| %>
-    <%= link_to "#{s.title}", adventure_scene_path(adventure_id: @scene.adventure.id, id: s.id) %>
+    <li><%= link_to "#{s.title}", adventure_scene_path(adventure_id: @scene.adventure.id, id: s.id) %></li>
+  <% end %>
+  <% unless @scene.title == "Death" %>
+    <li><%= link_to "Death", adventure_scene_path(adventure_id: @death.adventure_id, id: @death.id) %> </li>
   <% end %>
 </ul>

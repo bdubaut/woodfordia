@@ -51,4 +51,5 @@ class AdventuresController < ApplicationController
   def adventure_params
     params.require(:adventure).permit(:name, :tagline, :synopsis)
   end
+
 end

@@ -24,6 +24,7 @@ class ScenesController < ApplicationController
 
   def show
     adventure = Adventure.where(id: params[:adventure_id]).first
+    @death = Scene.where(title: "Death", adventure: adventure).first
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:id]).first
     redirect_to adventures_path(adventure.id) if @scene.nil?
   end

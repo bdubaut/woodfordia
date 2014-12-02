@@ -9,4 +9,12 @@ class Adventure
   field :synopsis,  type: String
 
   validates_presence_of :name
+
+  after_create :initiate_death
+
+  protected
+
+  def initiate_death
+    death = Scene.create(title: "Death", adventure_id: self.id)
+  end
 end
