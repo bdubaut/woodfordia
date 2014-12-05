@@ -5,12 +5,14 @@ class CheckInsController < ApplicationController
     @adventure = Adventure.where(id: params[:adventure_id]).first
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:scene_id]).first
     @users = User.with_role(:player).entries
+    @list = @users.map{|u| [u.character_name, u.id] }
+    @outcomes = @scene.next_scenes.map{|s| [s.title, s.id]}
   end
 
   def create
     @check_in = CheckIn.create(check_in_params)
-    redirect_to adventure_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id]) and return if @check_in.nil?
-    redirect_to adventure_scene_path(adventure_id: params[:adventure_id], id: params[:check_in][:scene_id])
+    redirect_to adventure_scene_path(adventure_id: params[:check_in][:adventure_id], id: params[:check_in][:scene_id]) and return if @check_in.nil?
+    redirect_to adventure_scene_path(adventure_id: params[:check_in][:adventure_id], id: params[:check_in][:scene_id])
   end
 
   def destroy
@@ -23,6 +25,6 @@ class CheckInsController < ApplicationController
   private
 
   def check_in_params
-    params.require(:check_in).permit(:user_id, :scene_id)
+    params.require(:check_in).permit(:user_id, :scene_id, :answer_1, :answer_2, :answer_3, :outcome_scene_id)
   end
 end

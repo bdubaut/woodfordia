@@ -1,0 +1,26 @@
+<h3>Scene: <%= @scene.title %> </h3>
+<p>
+  <%= @scene.description %>
+</p>
+<%= form_for :check_in, url: check_ins_path()  do |f| %>
+  <%= f.label :user_id, 'User' %>
+  <%= f.select :user_id, options_for_select(@list) %>
+  <br/>
+  <%= f.label :answer_1, @scene.question_1 %>
+  <%= f.text_field :answer_1 %>
+  <br/>
+  <%= f.label :answer_2, @scene.question_2 %>
+  <%= f.text_field :answer_2 %>
+  <br/>
+  <%= f.label :answer_3, @scene.question_3 %>
+  <%= f.text_field :answer_3 %>
+  <br/>
+  <%= f.hidden_field :adventure_id, value: @adventure.id %>
+  <%= f.hidden_field :scene_id, value: @scene.id %>
+  <br>
+  <%= f.label :outcome_scene_id %>
+  <%= f.select :outcome_scene_id, options_for_select(@outcomes) %>
+  <br/>
+  <%= f.submit %>
+
+<% end %>

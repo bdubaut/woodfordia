@@ -14,3 +14,4 @@
     <li><%= link_to "Death", adventure_scene_path(adventure_id: @death.adventure_id, id: @death.id) %> </li>
   <% end %>
 </ul>
+<%= link_to "Check In a Player", new_check_in_path(adventure_id: params[:adventure_id], scene_id: @scene.id) %>

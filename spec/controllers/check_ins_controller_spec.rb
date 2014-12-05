@@ -31,11 +31,11 @@ RSpec.describe CheckInsController, :type => :controller do
   describe '#create' do
     it 'checks in a player in a scene' do
       expect(CheckIn.count).to eq 0
-      post :create, adventure_id: @adventure.id, check_in: {scene_id: @scene.id, user_id: @player.id}
+      post :create,  check_in: { adventure_id: @adventure.id, scene_id: @scene.id, user_id: @player.id}
       expect(CheckIn.count).to eq 1
     end
     it 'redirects to the scene' do
-      post :create, adventure_id: @adventure.id, check_in: {scene_id: @scene.id, user_id: @player.id}
+      post :create,  check_in: {adventure_id: @adventure.id, scene_id: @scene.id, user_id: @player.id}
       expect(response).to redirect_to adventure_scene_path(adventure_id: @adventure.id, id: @scene.id)
     end
   end
