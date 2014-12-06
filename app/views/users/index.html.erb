@@ -1,0 +1,27 @@
+<h2>Users</h2>
+<%= link_to "+Create User", new_admin_user_path, class: "btn btn-success" %>
+<br>
+<table class="table table-hover">
+  <th>Character name</th>
+  <th>First name</th>
+  <th>Last name</th>
+  <th>Roles</th>
+  <% @list.each do |u| %>
+    <tr>
+      <td>
+        <%= u.character_name %>
+      </td>
+      <td>
+        <%= u.first_name %>
+      </td>
+      <td>
+        <%= u.last_name %>
+      </td>
+      <td>
+          <% u.roles.each do |r| %>
+            <%= "#{r.name} " %>
+          <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

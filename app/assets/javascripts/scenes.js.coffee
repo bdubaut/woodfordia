@@ -1,3 +1,12 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  $('#scene_previous_scenes').chosen
+    allow_single_deselect: true
+    no_results_text: 'No results matched'
+    width: '200px'
+  $('#scene_next_scenes').chosen
+    allow_single_deselect: true
+    no_results_text: 'No results matched'
+    width: '200px'

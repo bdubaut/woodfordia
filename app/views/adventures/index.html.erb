@@ -1,17 +1,14 @@
-<h2>Adventures</h2>
-<ul>
-  <% @list.each do |a| %>
-    <li><%= link_to a.name, adventure_path(a.id) %> - <em><%= a.tagline %></em></li>
-  <% end %>
-</ul>
+<div class='container'>
+  <h2>Adventures</h2>
 
-<%= link_to "Create Adventure", new_adventure_path %>
+  <%= link_to "Create Adventure", new_adventure_path, class: 'btn btn-success' %>
 
-<h2>Users</h2>
-<ul>
-  <% @users.each do |u| %>
-    <li><%= "#{u.character_name} (#{u.first_name} #{u.last_name})" %> </li>
-  <% end %>
-</ul>
+  <%= link_to "Users", admin_users_path, class: "btn btn-success" %>
 
-<%= link_to "Create User", new_user_registration_path %>
+  <table class='table table-hover'>
+    <% @list.each do |a| %>
+    <tr><td><%= link_to a.name, adventure_path(a.id) %> - <em><%= a.tagline %></em></td></tr>
+    <% end %>
+  </table>
+
+</div>

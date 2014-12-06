@@ -5,12 +5,5 @@
 <span><%= @scene.question_1 %> </span><br>
 <span><%= @scene.question_2 %> </span><br>
 <span><%= @scene.question_3 %> </span><br>
-<h4>Outcomes:</h4>
-<ul>
-  <% @scene.next_scenes.each do |s| %>
-    <li><%= link_to "#{s.title}", adventure_scene_path(adventure_id: @scene.adventure.id, id: s.id) %></li>
-  <% end %>
-  <% unless @scene.title == "Death" %>
-    <li><%= link_to "Death", adventure_scene_path(adventure_id: @death.adventure_id, id: @death.id) %> </li>
-  <% end %>
-</ul>
+<br>
+<%= link_to "Check In a Player", new_check_in_path(adventure_id: params[:adventure_id], scene_id: @scene.id), class: 'btn btn-warning' %>

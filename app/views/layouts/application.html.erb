@@ -6,14 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <h1>
-    WOODFORDIA
-  </h1>
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <br>
-  
-<%= yield %>
+<body style="padding-top: 70px;">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <a href="/" class='navbar-brand'>WOODFORDIA</a>
+    <div class="container">
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nabbar-right navbar-link' %>
+    </div>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
