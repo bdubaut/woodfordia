@@ -15,10 +15,10 @@
   <%= f.text_field :question_3 %>
   <br>
   <%= f.label :previous_scenes %>
-  <%= f.select('previous_scenes', options_for_select(@list)) %>
+  <%= f.select('previous_scenes', options_for_select(@list),{}, { multiple: true}) %>
   <br>
   <%= f.label :next_scenes %>
-  <%= f.select('previous_scenes', options_for_select(@list)) %>
+  <%= f.select('next_scenes', options_for_select(@list), {}, { multiple: true }) %>
   <br>
   <%= f.submit 'Create Scene' %>
 <% end %>

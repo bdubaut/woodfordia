@@ -46,6 +46,12 @@ GEM
     bson (2.3.0)
     builder (3.2.2)
     cancan (1.6.10)
+    chosen-rails (1.2.0)
+      coffee-rails (>= 3.2)
+      compass-rails (>= 1.1.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
+    chunky_png (1.3.3)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -53,6 +59,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    compass (0.12.7)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.2.19)
+    compass-rails (2.0.0)
+      compass (>= 0.12.2)
     connection_pool (2.0.0)
     devise (3.4.0)
       bcrypt (~> 3.0)
@@ -70,6 +82,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fssm (0.2.10)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.4)
@@ -168,8 +181,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.5.1)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -185,6 +196,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass
   cancan
+  chosen-rails
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
@@ -199,5 +211,4 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   simplecov
   spring
-  turbolinks
   uglifier (>= 1.3.0)

@@ -11,6 +11,8 @@ class ScenesController < ApplicationController
     @adventure = Adventure.where(id: params[:adventure_id]).first
     unless @adventure.nil?
       s = Scene.new(scene_params)
+      s.next_scenes = params[:scene][:next_scenes]
+      s.previous_scenes = params[:scene][:previous_scenes]
       if s.save
         @adventure.scenes << s
         @adventure.save
@@ -64,6 +66,6 @@ class ScenesController < ApplicationController
   private
 
   def scene_params
-    params.require(:scene).permit(:title, :description, :question_1, :question_2, :question_3)
+    params.require(:scene).permit(:title, :description, :question_1, :question_2, :question_3, :next_scenes, :previous_scenes)
   end
 end

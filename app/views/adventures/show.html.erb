@@ -3,12 +3,12 @@
   <%= @adventure.synopsis %>
 </p>
 
-<ul>
+<table class='table table-hover'>
   <% @scenes.each do |s| %>
-    <li><%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> </li>
+    <tr><td>
+      <%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> 
+    </td></tr>
   <% end %>
-</ul>
+</table>
 
-<%= link_to '+ Add Scene', new_adventure_scene_path(@adventure.id) %>
-
-<< <%= link_to "Back to Home", root_path %>
+<%= link_to '+ Add Scene', new_adventure_scene_path(@adventure.id), class: "btn btn-success" %>

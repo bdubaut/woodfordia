@@ -6,7 +6,12 @@ class CheckInsController < ApplicationController
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:scene_id]).first
     @users = User.with_role(:player).entries
     @list = @users.map{|u| [u.character_name, u.id] }
-    @outcomes = @scene.next_scenes.map{|s| [s.title, s.id]}
+    @outcomes = []
+    @scene.next_scenes.each do |id|
+      s = Scene.where(id: id).first
+      @outcomes << s unless s.nil?
+    end
+    @outcomes = @outcomes.map{|s| [s.title, s.id]}
   end
 
   def create
