@@ -21,11 +21,11 @@ RSpec.describe UsersController, :type => :controller do
   describe 'create' do
     it 'creates a new player with the specified role' do
       u = FactoryGirl.build(:character)
-      post :create, user: {first_name: 'Johnny', last_name: 'Fields', character_name: 'Coockie monster', password: u.password, role: 'character', email: 'me@toto.fr'}
+      post :create, user: {first_name: 'Johnny', last_name: 'Fields', character_name: 'Coockie monster', password: u.password, roles: 'character', email: 'me@toto.fr'}
       expect(User.count).to eq 1
       expect(User.last.first_name).to eq 'Johnny'
       expect(User.last.has_role?(:character)).to be_truthy
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to admin_users_path
     end
   end
   describe '#show' do

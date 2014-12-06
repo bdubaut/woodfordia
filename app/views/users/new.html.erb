@@ -1,1 +1,16 @@
 <h2>Create a User</h2>
+<%= form_for :user, url: {action: "create"} do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %> <br>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %> <br>
+  <%= f.label :character_name %>
+  <%= f.text_field :character_name %> <br>
+  <%= f.label :email %>
+  <%= f.text_field :email %> <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+  <%= f.label "Role" %>
+  <%= f.select :roles, options_for_select([['player', 'player'], ['character', 'character'], ['admin', 'admin']]) %><br>
+  <%= f.submit %>
+<% end %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :adventures do
     resources :scenes
   end
-  resources :users
+  resources :admin_users, controller: 'users'
   resources :check_ins, only: [:new, :create, :destroy]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

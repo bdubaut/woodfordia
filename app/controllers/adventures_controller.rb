@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_action :authenticate_user!
-
+  
   def index
     @list = Adventure.all.entries
     @users = User.all.entries
