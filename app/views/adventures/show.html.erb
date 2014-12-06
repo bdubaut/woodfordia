@@ -5,9 +5,18 @@
 
 <table class='table table-hover'>
   <% @scenes.each do |s| %>
-    <tr><td>
-      <%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %> 
-    </td></tr>
+    <tr>
+      <td>
+        <%= link_to s.title, adventure_scene_path(adventure_id: @adventure.id, id: s.id) %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_adventure_scene_path(adventure_id: @adventure.id, id: s.id), class: 'btn btn-xs btn-info ' %>
+      </td>
+      <td>
+        <%= link_to "Delete", adventure_scene_path(adventure_id: @adventure.id, id: s.id), method: :delete, class: 'btn btn-xs btn-danger ' %>
+      </td>
+
+    </tr>
   <% end %>
 </table>
 

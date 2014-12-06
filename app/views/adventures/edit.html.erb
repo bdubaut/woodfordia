@@ -1,0 +1,12 @@
+<%= form_for @adventure , url: { action: "update" } do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name, class: "form-control" %>
+  <br>
+  <%= f.label :tagline %>:
+  <%= f.text_field :tagline, class: "form-control" %>
+  <br>
+  <%= f.label :synopsis %>:
+  <%= f.text_area :synopsis, class: "form-control" %>
+  <br>
+  <%= f.submit "Update", class: "btn btn-success" %>
+<% end %>

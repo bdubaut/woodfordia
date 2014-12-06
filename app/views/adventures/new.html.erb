@@ -1,12 +1,12 @@
 <%= form_for @adventure do |f| %>
   <%= f.label :name %>:
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-control" %>
   <br>
   <%= f.label :tagline %>:
-  <%= f.text_field :tagline %>
+  <%= f.text_field :tagline, class: "form-control" %>
   <br>
   <%= f.label :synopsis %>:
-  <%= f.text_area :synopsis %>
+  <%= f.text_area :synopsis, class: "form-control" %>
   <br>
-  <%= f.submit %>
+  <%= f.submit "Create", class: "btn btn-success" %>
 <% end %>
