@@ -1,1 +1,14 @@
 <h2>Edit User</h2>
+<%= form_for @user, url: {action: "update"} do |f| %>
+<%= f.label :first_name %>
+<%= f.text_field :first_name, class: 'form-control' %> <br>
+<%= f.label :last_name %>
+<%= f.text_field :last_name, class: 'form-control' %> <br>
+<%= f.label :character_name %>
+<%= f.text_field :character_name, class: 'form-control' %> <br>
+<%= f.label :email %>
+<%= f.text_field :email, class: 'form-control' %> <br>
+<%= f.label :roles, "Role" %>
+<%= f.select(:roles, options_for_select([['player', 'player'], ['character', 'character'], ['admin', 'admin']]), {}, {class: 'form-control'}) %><br>
+<%= f.submit 'Edit', class: 'btn btn-success' %>
+<% end %>

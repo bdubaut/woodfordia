@@ -35,6 +35,7 @@ class ScenesController < ApplicationController
     @adventure = Adventure.where(id: params[:adventure_id]).first
     redirect_to(root_path) and return if @adventure.nil?
     @scene = Scene.where(adventure_id: @adventure.id, id: params[:id]).first
+    @list = Scene.where(:adventure => @adventure).entries.map{|s| [s.title, s.id]}
     redirect_to(adventures_path(@adventure.id)) and return if @scene.nil?
   end
 
@@ -45,8 +46,6 @@ class ScenesController < ApplicationController
     redirect_to root_path and return if scene.nil?
     if scene.update_attributes(scene_params)
       redirect_to(adventure_scene_path(adventure.id, scene.id))
-    # else
-    #   redirect_to(edit_adventure_scene_path(adventure.id, scene.id))
     end
   end
 
