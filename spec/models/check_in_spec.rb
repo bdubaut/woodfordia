@@ -8,6 +8,7 @@ RSpec.describe CheckIn, :type => :model do
   end
   describe 'validations' do
     before(:all) do
+      User.delete_all
       @user = FactoryGirl.create(:player)
       @scene = FactoryGirl.create(:scene)
     end
