@@ -28,4 +28,27 @@ RSpec.describe UsersController, :type => :controller do
       expect(response).to redirect_to users_path
     end
   end
+  describe '#show' do
+    it 'renders the asked usr' do
+      user = FactoryGirl.create(:player)
+      get :show, id: user.id
+      expect(assigns(:user)).to eq user
+    end
+  end
+  describe '#destroy' do
+    it 'does something' do
+      user = FactoryGirl.create(:player)
+      expect(User.count).to eq 1
+      delete :destroy, id: user.id
+      expect(User.count).to eq 0
+    end
+  end
+  describe '#edit' do
+    it 'instanciates a new user for Form purposes' do
+      user = FactoryGirl.create(:player)
+      get :edit, id: user.id
+      expect(assigns(:user)).to eq user
+    end
+  end
+
 end

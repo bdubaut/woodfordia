@@ -19,11 +19,21 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.where(id: params[:id]).first
   end
 
   def destroy
+    @user = User.where(id: params[:id]).first
+    @user.delete
+    redirect_to users_path
+  end
 
+  def edit
+    @user = User.where(id: params[:id]).first
+  end
+
+  def update
+    
   end
 
   private
