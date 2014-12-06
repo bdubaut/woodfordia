@@ -6,6 +6,7 @@
   <th>First name</th>
   <th>Last name</th>
   <th>Roles</th>
+  <th>Actions</th>
   <% @list.each do |u| %>
     <tr>
       <td>
@@ -21,6 +22,10 @@
           <% u.roles.each do |r| %>
             <%= "#{r.name} " %>
           <% end %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_admin_user_path(u), class: 'btn btn-xs btn-info' %>
+        <%= link_to "Delete", admin_user_path(u), method: :delete, class: 'btn btn-xs btn-danger' %>
       </td>
     </tr>
   <% end %>

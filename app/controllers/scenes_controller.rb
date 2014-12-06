@@ -46,8 +46,6 @@ class ScenesController < ApplicationController
     redirect_to root_path and return if scene.nil?
     if scene.update_attributes(scene_params)
       redirect_to(adventure_scene_path(adventure.id, scene.id))
-    # else
-    #   redirect_to(edit_adventure_scene_path(adventure.id, scene.id))
     end
   end
 

@@ -36,7 +36,15 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    @user = User.where(id: params[:id]).first
+    redirect_to root_path and return if @user.nil?
+    if @user.update_attributes(user_params)
+      @user.roles = []
+      @user.add_role(params[:user][:roles].to_sym)
+      @user.save ? (redirect_to(admin_users_path) and return) : (redirect_to(admin_users_path, notice: 'An Error occured ') and return)
+    else
+      redirect_to(admin_users_path, notice: 'An Error occured ') and return
+    end
   end
 
   private
