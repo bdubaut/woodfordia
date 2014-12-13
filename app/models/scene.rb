@@ -7,9 +7,6 @@ class Scene
 
   field :title,           type: String
   field :description,     type: String
-  field :question_1,      type: String
-  field :question_2,      type: String
-  field :question_3,      type: String
   field :location,        type: String
   field :next_scenes,     type: Array, default: []
   field :previous_scenes, type: Array, default: []

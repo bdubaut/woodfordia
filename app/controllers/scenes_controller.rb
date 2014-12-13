@@ -28,6 +28,7 @@ class ScenesController < ApplicationController
     adventure = Adventure.where(id: params[:adventure_id]).first
     @death = Scene.where(title: "Death", adventure: adventure).first
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:id]).first
+    @next_scenes = @scene.next_scenes.map{|id| Scene.where(id: id).entries.first}.select{|s| s }.map{|s| s.title}
     redirect_to adventures_path(adventure.id) if @scene.nil?
   end
 

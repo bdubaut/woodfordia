@@ -6,15 +6,6 @@
   <%= f.label :user_id, 'User' %>
   <%= f.select :user_id, options_for_select(@list) %>
   <br/>
-  <%= f.label :answer_1, @scene.question_1 %>
-  <%= f.text_field :answer_1 %>
-  <br/>
-  <%= f.label :answer_2, @scene.question_2 %>
-  <%= f.text_field :answer_2 %>
-  <br/>
-  <%= f.label :answer_3, @scene.question_3 %>
-  <%= f.text_field :answer_3 %>
-  <br/>
   <%= f.hidden_field :adventure_id, value: @adventure.id %>
   <%= f.hidden_field :scene_id, value: @scene.id %>
   <br>
