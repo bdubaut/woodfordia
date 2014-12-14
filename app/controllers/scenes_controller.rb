@@ -48,6 +48,11 @@ class ScenesController < ApplicationController
     scene = Scene.where(adventure_id: adventure.id, id: params[:id]).first
     redirect_to root_path and return if scene.nil?
     if scene.update_attributes(scene_params)
+      unless params[:scene][:next_scenes].blank? or params[:scene][:previous_scenes].blank?
+        n = params[:scene][:next_scenes].select{ |id| !id.blank? }
+        p = params[:scene][:previous_scenes].select{ |id| !id.blank? }
+        scene.update_attributes(next_scenes: n, previous_scenes: p)
+      end
       redirect_to(adventure_scene_path(adventure.id, scene.id))
     end
   end
