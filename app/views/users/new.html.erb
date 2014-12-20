@@ -8,9 +8,12 @@
   <%= f.text_field :character_name, class: 'form-control' %> <br>
   <%= f.label :email %>
   <%= f.text_field :email, class: 'form-control' %> <br>
-  <%= f.label :password %><br>
-  <small style="color: grey;"><em>Password needs to be at least 8 characters long</em></small>
-  <%= f.password_field :password, class: 'form-control' %><br>
+  <%= f.label :first_time?, "First Timer?" %>
+  <%= f.check_box :first_time? %><br>
+  <%= f.label :sex %>
+  <%= f.select(:sex, options_for_select(['M', 'F', 'Other']), {}, {class: 'form-control'}) %><br>
+  <%= f.label :age %><br>
+  <%= f.select(:age, (13..100), {}, {class: 'form-control'}) %><br>
   <%= f.label :roles, "Role" %>
   <%= f.select(:roles, options_for_select([['player', 'player'], ['character', 'character'], ['admin', 'admin']]), {}, {class: 'form-control'}) %><br>
   <%= f.submit 'Create', class: 'btn btn-success' %>

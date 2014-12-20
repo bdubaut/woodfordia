@@ -46,9 +46,23 @@ class User
   field :character_name,    type: String
   field :first_name,        type: String
   field :last_name,         type: String
+  field :sex,               type: String
+  field :age,               type: Integer
+  field :first_time?,       type: Boolean
 
   validates_presence_of :first_name, :last_name
+  validates_inclusion_of :sex, in: ['M', 'F', 'Other']
   after_create :add_default_role
+
+  def role
+    if self.has_role? :admin
+      "admin"
+    elsif self.has_role :character
+      "character"
+    else
+      "player"
+    end
+  end
 
   private
 
