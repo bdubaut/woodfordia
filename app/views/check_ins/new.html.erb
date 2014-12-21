@@ -3,7 +3,7 @@
   <%= @description %>
 </p>
 <%= form_for :check_in, url: check_ins_path()  do |f| %>
-  <%= f.label :user_id, 'User' %>
+  <%= f.label :user_id, 'Player name' %>
   <%= f.select :user_id, options_for_select(@list) %>
   <br/>
   <%= f.hidden_field :adventure_id, value: @adventure.id %>
