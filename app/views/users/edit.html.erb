@@ -11,8 +11,8 @@
 <%= f.label :password %>
 <small><em>Password must be at least 8 letters long</em></small><br>
 <%= f.password_field :password, class: "form-control" %><br>
-<%= f.label :first_time?, "First Timer?" %>
-<%= f.check_box :first_time? %><br>
+<%= f.label :first_time, "First Timer?" %>
+<%= f.check_box :first_time %><br>
 <%= f.label :sex %>
 <%= f.select(:sex, options_for_select(['M', 'F', 'Other']), {}, {class: 'form-control', value: "#{@user.sex}"}) %><br>
 <%= f.label :age %><br>
