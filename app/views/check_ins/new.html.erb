@@ -1,6 +1,6 @@
 <h3>Scene: <%= @scene.title %> </h3>
 <p>
-  <%= @scene.description %>
+  <%= @description %>
 </p>
 <%= form_for :check_in, url: check_ins_path()  do |f| %>
   <%= f.label :user_id, 'User' %>
