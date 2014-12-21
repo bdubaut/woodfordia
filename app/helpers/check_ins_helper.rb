@@ -1,5 +1,5 @@
 module CheckInsHelper
-  def outcome id
+  def scene_title id
     scene = Scene.where(id: id).first
     if scene.nil?
       return " "

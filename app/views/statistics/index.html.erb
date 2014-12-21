@@ -97,13 +97,13 @@
               <% user.check_ins.each do |c| %>
                 <tr>
                   <td>
-                    <%= Scene.where(id: c.scene_id).first.title %>
+                    <%= scene_title(c.scene_id) %>
                   </td>
                   <td>
                     <%= c.created_at %>
                   </td>
                   <td>
-                    <%= outcome(c.outcome_scene_id) %>
+                    <%= scene_title(c.outcome_scene_id) %>
                   </td>
                 </tr>
               <% end %>
