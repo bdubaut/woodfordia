@@ -1,11 +1,108 @@
-<h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per Scene per day.</h3>
-<div id="adventures" class="panel-group">
-  <% @adventures.each do |adventure| %>
-    <div id=<%= adventure.id %> class="panel panel-default">
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div id="sex_pie" class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#adventures" href="#collapse-<%= adventure.id %>" aria-expanded="true" aria-controls="collapse-<%= adventure.id %>"><%= adventure.name %></a></h4>
+        <h4><i class="glyphicon glyphicon-stats"></i> Player Sex     <small class="text-right"><em> Total: <%= @users.count %></em></small></h4>
       </div>
-      <div id="collapse-<%= adventure.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= adventure.id %>">
+      <div class="panel-body">
+        <canvas id="sex-chart" width="450" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div id="virgin_pie" class="panel panel-default">
+      <div class="panel-heading">
+        <h4><i class="glyphicon glyphicon-stats"></i> Virgins</h4>
+      </div>
+      <div class="panel-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per Scene per day.</h3>
+  <div id="adventures" class="panel-group">
+    <% @adventures.each do |adventure| %>
+      <div id=<%= adventure.id %> class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title"><a data-toggle="collapse" data-parent="#adventures" href="#collapse-<%= adventure.id %>" aria-expanded="true" aria-controls="collapse-<%= adventure.id %>"><%= adventure.name %></a></h4>
+        </div>
+        <div id="collapse-<%= adventure.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= adventure.id %>">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-condensed">
+                <thead>
+                  <tr>
+                    <th>
+                      Scene
+                    </th>
+                    <th>
+                      Day 1
+                    </th>
+                    <th>
+                      Day 2
+                    </th>
+                    <th>
+                      Day 3
+                    </th>
+                    <th>
+                      Day 4
+                    </th>
+                    <th>
+                      Day 5
+                    </th>
+                    <th>
+                      Day 6
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% adventure.scenes.each do |s| %>
+                    <tr>
+                      <td>
+                        <%= s.title %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "27"), :created_at.lt => Time.new("2014", "12", "28")).all.count %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "28"), :created_at.lt => Time.new("2014", "12", "29")).all.count %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "29"), :created_at.lt => Time.new("2014", "12", "30")).all.count %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "30"), :created_at.lt => Time.new("2014", "12", "31")).all.count %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "31"), :created_at.lt => Time.new("2015", "01", "01")).all.count %>
+                      </td>
+                      <td>
+                        <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2015", "01", "01"), :created_at.lt => Time.new("2015", "01", "02")).all.count %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per player</h3>
+  <div id="users" class="panel-group">
+    <% @users.each do |user| %>
+    <div id=<%= user.id %> class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#users" href="#collapse-<%= user.id %>" aria-expanded="true" aria-controls="collapse-<%= user.id %>"><%= user.character_name %></a></h4>
+      </div>
+      <div id="collapse-<%= user.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= user.id %>">
         <div class="panel-body">
           <div class="table-responsive">
             <table class="table table-hover table-condensed">
@@ -15,48 +112,24 @@
                     Scene
                   </th>
                   <th>
-                    Day 1
+                    Date
                   </th>
                   <th>
-                    Day 2
-                  </th>
-                  <th>
-                    Day 3
-                  </th>
-                  <th>
-                    Day 4
-                  </th>
-                  <th>
-                    Day 5
-                  </th>
-                  <th>
-                    Day 6
+                    Outcome
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <% adventure.scenes.each do |s| %>
+                <% user.check_ins.each do |c| %>
                   <tr>
                     <td>
-                      <%= s.title %>
+                      <%= scene_title(c.scene_id) %>
                     </td>
                     <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "27"), :created_at.lt => Time.new("2014", "12", "28")).all.count %>
+                      <%= c.created_at %>
                     </td>
                     <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "28"), :created_at.lt => Time.new("2014", "12", "29")).all.count %>
-                    </td>
-                    <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "29"), :created_at.lt => Time.new("2014", "12", "30")).all.count %>
-                    </td>
-                    <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "30"), :created_at.lt => Time.new("2014", "12", "31")).all.count %>
-                    </td>
-                    <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2014", "12", "31"), :created_at.lt => Time.new("2015", "01", "01")).all.count %>
-                    </td>
-                    <td>
-                      <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2015", "01", "01"), :created_at.lt => Time.new("2015", "01", "02")).all.count %>
+                      <%= scene_title(c.outcome_scene_id) %>
                     </td>
                   </tr>
                 <% end %>
@@ -66,52 +139,6 @@
         </div>
       </div>
     </div>
-  <% end %>
-</div>
-
-<h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per player</h3>
-<div id="users" class="panel-group">
-  <% @users.each do |user| %>
-  <div id=<%= user.id %> class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#users" href="#collapse-<%= user.id %>" aria-expanded="true" aria-controls="collapse-<%= user.id %>"><%= user.character_name %></a></h4>
-    </div>
-    <div id="collapse-<%= user.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= user.id %>">
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table class="table table-hover table-condensed">
-            <thead>
-              <tr>
-                <th>
-                  Scene
-                </th>
-                <th>
-                  Date
-                </th>
-                <th>
-                  Outcome
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% user.check_ins.each do |c| %>
-                <tr>
-                  <td>
-                    <%= scene_title(c.scene_id) %>
-                  </td>
-                  <td>
-                    <%= c.created_at %>
-                  </td>
-                  <td>
-                    <%= scene_title(c.outcome_scene_id) %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

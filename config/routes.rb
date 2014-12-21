@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :check_ins, only: [:new, :create, :destroy]
 
   get 'statistics' => 'statistics#index'
-  
+  get 'statistics/sex_pie' => 'statistics#sex_chart'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
