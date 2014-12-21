@@ -48,7 +48,7 @@ class User
   field :last_name,         type: String
   field :sex,               type: String, default: 'Other'
   field :age,               type: Integer
-  field :first_time?,       type: Boolean
+  field :first_time?,       type: Boolean, default: true
 
   validates_presence_of :first_name, :last_name
   validates_inclusion_of :sex, in: ['M', 'F', 'Other']

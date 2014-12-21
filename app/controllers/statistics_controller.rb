@@ -1,4 +1,6 @@
 class StatisticsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @adventures = Adventure.all.entries
     @users = User.with_role(:player).all.entries
@@ -27,6 +29,26 @@ class StatisticsController < ApplicationController
         color:"#FDB45C",
         highlight: "#FFC870",
         label: "Other"
+      },
+    ]
+    render json: data
+  end
+
+  def virgin_chart
+    @virgins = User.with_role(:player).where(first_time?: true).count
+    @non_virgins = User.with_role(:player).where(first_time?: false).count
+    data = [
+      {
+        value: @virgins,
+        color: '#B1CCDA',
+        highlight: '#B1CCDA',
+        label: 'Virgins'
+      },
+      {
+        value: @non_virgins,
+        color: '##EEEEEE',
+        highlight: '##EEEEEE',
+        label: 'Non Virgins'
       },
     ]
     render json: data

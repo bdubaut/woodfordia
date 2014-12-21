@@ -5,9 +5,13 @@
 $(".collapse").collapse()
 
 $.getJSON "/statistics/sex_pie", (data) ->
-  console.log data
   ctx = document.getElementById("sex-chart").getContext('2d')
+  window.myPie = new Chart(ctx).Pie(data)
+  return
+
+$.getJSON "/statistics/virgin_pie", (data) ->
+  console.log data
+  ctx = document.getElementById("virgin-chart").getContext('2d')
   console.log ctx
   window.myPie = new Chart(ctx).Pie(data)
-  window.myPie.generateLegend()
   return
