@@ -11,11 +11,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.password = 'password'
     if @user.valid?
       @user.add_role(params[:user][:roles].to_sym)
       @user.save
     else
-      raise @user.errors.inspect
       redirect_to(new_admin_user_path) and return
     end
     redirect_to(admin_users_path) and return
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:character_name, :first_name, :last_name, :email, :password)
+    params.require(:user).permit(:character_name, :first_name, :last_name, :email, :sex, :age, :first_time?)
   end
 end

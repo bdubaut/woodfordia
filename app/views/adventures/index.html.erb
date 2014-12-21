@@ -5,6 +5,8 @@
 
   <%= link_to "Users", admin_users_path, class: "btn btn-success" %>
 
+  <%= link_to "Statistics", statistics_path, class: "btn btn-warning" %>
+
   <table class='table table-hover'>
     <% @list.each do |a| %>
       <td><%= link_to a.name, adventure_path(a.id) %> - <em><%= a.tagline %></em></td><td><%= link_to "Edit", edit_adventure_path(id: a.id), class: 'btn btn-xs btn-info' %> </td><td><%= link_to "Delete", adventure_path(id: a.id), method: :delete, class: "btn btn-xs btn-danger" %></td></tr>
