@@ -15,3 +15,4 @@
 //= require_tree .
 //= require chosen-jquery
 //= require Chart
+//= require bootstrap-sprockets
