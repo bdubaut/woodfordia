@@ -46,7 +46,7 @@ class User
   field :character_name,    type: String
   field :first_name,        type: String
   field :last_name,         type: String
-  field :sex,               type: String
+  field :sex,               type: String, default: 'Other'
   field :age,               type: Integer
   field :first_time?,       type: Boolean
 
