@@ -1,11 +1,11 @@
 <h3>Scene: <%= @scene.title %> </h3>
 <p>
-  <%= @scene.description %>
+  <%= @description %>
 </p>
 <div id="previous-scenes">
   <table class="table table-hover">
     <th>
-      Possible outcomes:  
+      Possible outcomes:
     </th>
     <% @next_scenes.each do |s| %>
       <tr>
