@@ -48,7 +48,7 @@ class StatisticsController < ApplicationController
         value: @non_virgins,
         color: '#EEEEEE',
         highlight: '#EEEEEE',
-        label: 'Non Virgins'
+        label: 'Returning players'
       },
     ]
     render json: data
