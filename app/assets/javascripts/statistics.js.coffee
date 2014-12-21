@@ -10,8 +10,11 @@ $.getJSON "/statistics/sex_pie", (data) ->
   return
 
 $.getJSON "/statistics/virgin_pie", (data) ->
-  console.log data
   ctx = document.getElementById("virgin-chart").getContext('2d')
-  console.log ctx
   window.myPie = new Chart(ctx).Pie(data)
+  return
+
+$.getJSON "/statistics/age_chart", (data) ->
+  ctx = document.getElementById('age-chart').getContext('2d')
+  window.myBarChart = new Chart(ctx).Bar(data)
   return
