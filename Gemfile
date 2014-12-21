@@ -22,6 +22,9 @@ gem 'jquery-rails'
 
 # chart js integration
 gem 'chart-js-rails'
+# Markdown support
+gem 'github-markdown', '~> 0.6.8'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
