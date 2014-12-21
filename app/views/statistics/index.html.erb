@@ -1,4 +1,4 @@
-<h3>Statistics</h3>
+<h3>Statistics - Check-ins per Scene per day.</h3>
 <div id="adventures" class="panel-group">
   <% @adventures.each do |adventure| %>
     <div id=<%= adventure.id %> class="panel panel-default">
@@ -58,7 +58,6 @@
                     <td>
                       <%= CheckIn.where(:scene_id => s.id, :created_at.gte => Time.new("2015", "01", "01"), :created_at.lt => Time.new("2015", "01", "02")).all.count %>
                     </td>
-
                   </tr>
                 <% end %>
               </tbody>
@@ -67,5 +66,52 @@
         </div>
       </div>
     </div>
+  <% end %>
+</div>
+
+<h3>Statistics - Check-ins per player per day</h3>
+<div id="users" class="panel-group">
+  <% @users.each do |user| %>
+  <div id=<%= user.id %> class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#users" href="#collapse-<%= user.id %>" aria-expanded="true" aria-controls="collapse-<%= user.id %>"><%= user.character_name %></a></h4>
+    </div>
+    <div id="collapse-<%= user.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= user.id %>">
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed">
+            <thead>
+              <tr>
+                <th>
+                  Scene
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Outcome
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% user.check_ins.each do |c| %>
+                <tr>
+                  <td>
+                    <%= Scene.where(id: c.scene_id).first.title %>
+                  </td>
+                  <td>
+                    <%= c.created_at %>
+                  </td>
+                  <td>
+                    <%= outcome(c.outcome_scene_id) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
 </div>
