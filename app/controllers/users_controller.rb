@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = 'password'
     if @user.valid?
+      if params[:user][:first_time] == "1"
+        @user.first_time = true
+      elsif params[:user][:first_time] == "0"
+        @user.first_time = false
+      end
       @user.add_role(params[:user][:roles].to_sym)
       @user.save
     else
