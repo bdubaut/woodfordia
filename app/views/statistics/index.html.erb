@@ -1,7 +1,8 @@
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="container-fluid">
 
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="col-lg-6 col-md-6 col-sm-12">
+
+    <div class="col-lg-6">
       <div id="sex_pie" class="panel panel-default">
         <div class="panel-heading">
           <h4><i class="glyphicon glyphicon-stats"></i> Player Sex     <small><em> Total: <%= @users.count %></em></small></h4>
@@ -11,21 +12,24 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
+
+    <div class="col-lg-6">
       <div id="virgin_pie" class="panel panel-default">
         <div class="panel-heading">
-          <h4><i class="glyphicon glyphicon-stats"></i> Game Virgins <small><em> Total: <%= @users.count %></h4>
+          <h4><i class="glyphicon glyphicon-stats"></i> Game Virgins <small><em> Total: <%= @users.count %></em></small></h4>
         </div>
         <div class="panel-body">
           <canvas id="virgin-chart" width="450" height="300"></canvas>
         </div>
       </div>
     </div>
+
   </div>
-  <div class="col-lg-12 col-md-12">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
     <div id="age-graph" class="panel panel-default">
       <div class="panel-heading">
-        <h4><i class="glyphicon glyphicon-stats"></i> Player Age <small><em> Total: <%= @users.count %></h4>
+        <h4><i class="glyphicon glyphicon-stats"></i> Player Age <small><em> Total: <%= @users.count %></em></small></h4>
         </div>
         <div class="panel-body">
           <canvas id="age-chart" width="768" height="300"></canvas>
@@ -33,7 +37,8 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-12 col-md-12">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
     <h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per Scene per day.</h3>
     <div id="adventures" class="panel-group">
       <% @adventures.each do |adventure| %>
@@ -106,7 +111,7 @@
     </div>
   </div>
 
-  <div class="col-lg-12 col-md-12">
+  <div class="col-lg-12 col-md-12 col-sm-12">
     <h3><i class="glyphicon glyphicon-stats"></i> Statistics - Check-ins per player</h3>
     <div id="users" class="panel-group">
       <% @users.each do |user| %>
