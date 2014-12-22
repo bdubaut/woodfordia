@@ -8,7 +8,7 @@
           <h4><i class="glyphicon glyphicon-stats"></i> Player Sex     <small><em> Total: <%= @users.count %></em></small></h4>
         </div>
         <div class="panel-body">
-          <canvas id="sex-chart" width="450" height="300"></canvas>
+          <canvas id="sex-chart"></canvas>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
           <h4><i class="glyphicon glyphicon-stats"></i> Game Virgins <small><em> Total: <%= @users.count %></em></small></h4>
         </div>
         <div class="panel-body">
-          <canvas id="virgin-chart" width="450" height="300"></canvas>
+          <canvas id="virgin-chart" ></canvas>
         </div>
       </div>
     </div>
@@ -32,7 +32,9 @@
         <h4><i class="glyphicon glyphicon-stats"></i> Player Age <small><em> Total: <%= @users.count %></em></small></h4>
         </div>
         <div class="panel-body">
-          <canvas id="age-chart" width="768" height="300"></canvas>
+          <div class="container-fluid" >
+            <canvas id="age-chart"></canvas>
+          </div>
         </div>
       </div>
     </div>
