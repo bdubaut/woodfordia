@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get 'statistics' => 'statistics#index'
   get 'statistics/sex_pie' => 'statistics#sex_chart'
   get 'statistics/virgin_pie' => 'statistics#virgin_chart'
-
+  get 'statistics/age_chart' => 'statistics#age_chart'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
