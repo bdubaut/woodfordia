@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'bootstrap-sass'
+gem 'sprockets-rails', '>= 2.1.4'
 gem 'autoprefixer-rails'
 gem 'chosen-rails'
 
