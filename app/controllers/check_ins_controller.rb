@@ -5,7 +5,7 @@ class CheckInsController < ApplicationController
     @adventure = Adventure.where(id: params[:adventure_id]).first
     @scene = Scene.where(adventure_id: params[:adventure_id], id: params[:scene_id]).first
     @description = GitHub::Markdown.render(@scene.description).html_safe
-    @users = User.with_role(:player).entries
+    @users = User.with_role(:player).order_by(:character_name.desc).entries
     @list = @users.map{|u| [u.character_name, u.id] }
     @outcomes = []
     @scene.next_scenes.each do |id|
