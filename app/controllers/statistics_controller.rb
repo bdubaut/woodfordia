@@ -3,7 +3,7 @@ class StatisticsController < ApplicationController
 
   def index
     @adventures = Adventure.all.entries
-    @users = User.with_role(:player).all.order_by(:character_name.desc).entries
+    @users = User.with_role(:player).all.order_by(:character_name.asc).entries
   end
 
   def sex_chart

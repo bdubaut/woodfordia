@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @list = User.all.order_by(:character_name.desc).entries
+    @list = User.all.order_by(:character_name.asc).entries
   end
 
   def new
